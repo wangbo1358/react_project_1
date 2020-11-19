@@ -1,16 +1,10 @@
 import React from 'react';
 import './App_content.css';
-import img2 from "./deleta.png";
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, DatePicker, Select, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
 import "antd/dist/antd.css";
-import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { AudioOutlined } from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 const { Search } = Input;
@@ -39,41 +33,14 @@ class Info extends React.Component {
       this.state = {
         itemList: [],
         itemList1: [],
-        titledata: ["所有", "现代", "田园", "欧式", "美式", "中式", "日式", "北欧", "地中海", "东南亚", "简欧", "工业风", "简美", "工装"],
-        selectdata: "所有",
         propdata2: this.props.location.state.a,
-        // proname:this.props.location.state.a.name,
-        // proid:this.props.location.state.b
         propdata: [],
         proname:"",
         proid:"",
         procar:this.props.location.state.a.category
       }
     }
-    // componentWillReceiveProps=()=>{
-    //   this.setState({
-    //     propdata: this.props.location.state.a,
-    //     proname:this.props.location.state.a.name,
-    //     proid:this.props.location.state.b
-    //   })
-    // }
     componentWillMount = () => {
-      // let _this = this
-      // window.window.uyun.api.getDesigns({}, (err, result) => {
-      //   console.log(result.data)
-      //   console.log(_this.state.proid)
-      //   console.log(result.data[0].name)
-      //   // console.log(result.data[_this.state.proid].name)
-      //   // console.log(result.data[_this.props.lisindex].name)
-      //     // if(result.data.length>0){
-      //     //     console.log(result.data.length);
-      //     //     document.getElementById("example").style.display="none"
-      //     // }
-      //     _this.setState({
-      //       itemList: result && result.data,
-      //       proname:result.data[0].name
-      //     })
-      //   })
       let _this = this
       if(_this.props.location.state.a.id!=null && _this.props.location.state.a.id!=undefined){
         window.uyun.api.getDesign(_this.props.location.state.a.id, (err, result3) => {
@@ -86,36 +53,22 @@ class Info extends React.Component {
               proid:result3.id
             })
           }
-          // window.window.uyun.util.setToken(result3.token);
           })
-          
       }
       
     }
   //保存
     Preservation=()=>{
-      // console.log(this.state.propdata.id)
       console.log(this.state.proid)
       let _this = this
       window.window.uyun.api.updateDesign(this.state.propdata.id, {name: this.state.proname},(err, result) =>{
-        // window.window.uyun.api.getDesign(this.state.propdata.id, (err, result3) => {
-        //   // console.log(result.data)
-        //   // console.log(_this.state.proid)
-        //   // console.log(result.data[0].name)
-        //   // console.log(result.data[_this.state.proid].name)
-        //   // console.log(result.data[_this.props.lisindex].name)
-        //     // if(result.data.length>0){
-        //     //     console.log(result.data.length);
-        //     //     document.getElementById("example").style.display="none"
-        //     // }
-        //     _this.setState({
-        //       // itemList: result && result.data,
-        //       // proname:result.data[0].name
-        //       propdata: result3,
-        //       proname:result3.name,
-        //       procar:result3.category
-        //     })
-        //   })
+        debugger
+        console.log(_this.state.proname);
+        if (result!=null&&result!=undefined) {
+          alert("提交成功!");
+        }else{
+          alert("提交失败!");
+        }
       })
       
     }
@@ -129,7 +82,6 @@ class Info extends React.Component {
         console.log(value);
     }
     render() {
-      // console.log(this.state.propdata)
       console.log(this.state.procar)
       return (
         <div>

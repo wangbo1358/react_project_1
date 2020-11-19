@@ -1,19 +1,9 @@
 import React from 'react';
 import './App_content.css';
-import img2 from "./deleta.png";
-import ReactDOM, { render } from 'react-dom';
-import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, DatePicker, Select,Spin, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
 import "antd/dist/antd.css";
-/* import Scrollload from 'Scrollload'
-const Scrollload = require('Scrollload').default */
-import LazyLoad from 'react-lazyload';
-import zhCN from 'antd/lib/locale/zh_CN';
-import moment from 'moment';
 import 'moment/locale/zh-cn';
 import { AudioOutlined } from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 import ListCont from "./ListCont"
 import ListCont2 from "./ListCont2"
 const { Meta } = Card;
@@ -50,26 +40,13 @@ class Content1 extends React.Component {
     }
 
   }
-//   componentDidMount(){
-//     this.setState({
-//         scrollHeight: window.innerHeight - 320
-//     })
-// }
 //组件渲染完毕，添加动画
 componentDidMount() {
-//   if (this.scroll) {
-//    this.scroll.addEventListener("scroll", e => {
-//      const { clientHeight, scrollHeight, scrollTop } = e.target;
-
-//      const isBottom = scrollTop + clientHeight + 20 > scrollHeight;
-//      console.log(scrollTop, clientHeight, scrollHeight, isBottom);
-//    });
-//  }
-window.addEventListener('scroll', this.handleScroll);
+  window.addEventListener('scroll', this.handleScroll);
 }
 //组件将要渲染，ajax，添加动画前的类
 componentWillUnmount(){
- window.removeEventListener('scroll', this.handleScroll);
+  window.removeEventListener('scroll', this.handleScroll);
 }
 // 处理滚动监听
 handleScroll=()=>{
@@ -111,10 +88,7 @@ fetchData=()=>{
 }
   componentWillMount = () => {
     let _this = this
-    // window.window.uyun.env = 'prod';
-    // debugger
     window.uyun.api.authenticateMobileUser('17596576465', 'wangbo1358', function (err, result1) {
-      // window.window.uyun.api.getDesigns({ limit: _this.state.itemListlimit, page: _this.state.itemListpage }, (err, result) => {
       window.uyun.api.getDesigns({ limit: _this.state.itemListlimit }, (err, result) => {  
       console.log(result.data)
         console.log(_this.state.itemListlimit)
@@ -130,10 +104,6 @@ fetchData=()=>{
 
         })
       })
-      
-      // uyun.api.searchPrivateDesigns({keyword:'555'})
-      // window.window.uyun.util.setToken(result1.token);
-      // window.window.uyun.util.setApiToken(result1.token);
     });
   }
 
@@ -144,23 +114,14 @@ fetchData=()=>{
       console.log(this.state.itemListpage);
       console.log(pageNumber);
       let _this = this
-      // window.window.uyun.env = 'prod';
-      // window.window.uyun.api.authenticateMobileUser('17596576465', 'wangbo1358', function (err, result1) {
         window.uyun.api.getDesigns({ limit: _this.state.itemListlimit, page: _this.state.itemListpage }, (err, result) => {
-          console.log(result.data);
-          // console.log(result1);
-          // console.log(result.data.length)
           _this.setState({
             itemList: result && result.data,
-            // itemList1: result1,
             itemListpage: result.page,
-            // itemListlimit: result.limit,
             itemListtotal: result.total
           })
 
         })
-        // window.window.uyun.util.setToken(result1.token);
-      // })
     });
   }
   datacont = (key) => {
@@ -170,22 +131,15 @@ fetchData=()=>{
   }
   onChange = e => {
     console.log('radio checked', e.target.value);
-    // document.cookie="";
-    // delCookie()
     
     this.setState({
       value: e.target.value,
     },()=>{
       if(this.state.value === 3){
-        // let date = new Date();
-        // date.setTime(date.getTime() - 10000);
-        // document.cookie = "usepwd=a; expires=" + date.toGMTString();
         window.uyun.util.setToken("");
         this.props.history.push("/homelogin")
       }
     });
-    console.log(this.state.value)
-    
     if (this.state.value === 2) {
       this.setState({
         tit1: "contentb block",
@@ -209,23 +163,17 @@ fetchData=()=>{
   );
   onSearch = (value) => {
     console.log(value);
-
-
     this.setState({
       itemListkeyword: value
     }, () => {
       console.log(this.state.itemListkeyword);
       let _this = this
-        // uyun.api.searchPrivateDesigns({keyword:'555'})
         window.uyun.api.searchPrivateDesigns({ keyword: _this.state.itemListkeyword,
           limit: _this.state.itemListlimit, page: 1 , type: 'design'}, (err, result2) => {
           console.log(result2);
           if(result2==null){
             window.uyun.api.getDesigns({ limit: _this.state.itemListlimit }, (err, result) => {
-                console.log(result.data);
-                /* console.log(result1); */
-                // console.log(result.data.length)
-                _this.setState({
+               _this.setState({
                   itemList: result && result.data,
                   itemListpage: 1,
                   // itemListlimit: result.limit,
@@ -248,31 +196,9 @@ fetchData=()=>{
 
   }
 
-
-  // componentWillReceiveProps=()=>{
-  //   let _this = this
-  //   window.window.uyun.api.getDesigns({ limit: _this.state.itemListlimit }, (err, result) => {  
-  //     console.log(result.data)
-  //       console.log(_this.state.itemListlimit)
-  //       if(result.data.length>0){
-  //           console.log(result.data.length);
-  //           document.getElementById("example").style.display="none"
-  //       }
-  //       _this.setState({
-  //         itemList: result && result.data,
-  //         itemListpage: result.page,
-  //         itemListtotal: result.total
-
-  //       })
-  //     })
-  // }
-
-
   
 
   render() {
-    // const {scrollHeight} = this.state;
-    // console.log(this.props)
     return (
       <div className="content1">
         <div className="radio_chang">
@@ -309,24 +235,17 @@ fetchData=()=>{
             wrap={true}
             className="rowmar"
             justify="center"
-            gutter={[
-              // { xs: 8, sm: 16, md: 24, lg: 32 }, 
-              // { xs: 8, sm: 16, md: 24, lg: 32 }
-              16, 16
-            ]}
+            gutter={[16, 16]}
           >
             
             {
               this.state.itemList.map((item, index) => {
                 console.log(this.state.selectdata)
                 if (this.state.selectdata === "所有") {
-                  // return ListCont(item,index);
-                  // console.log(item.id)
-                  return <ListCont dataid={item.id} datauid={item.uid} className='scroll-body' key={index} dispname={this.state.itemList1.displayname} headurl={this.state.itemList1.headimgurl} listcon={item} listindex={index} ></ListCont>;
+                  return <ListCont dataid={item.id} datauid={item.uid} key={index} dispname={this.state.itemList1.displayname} headurl={this.state.itemList1.headimgurl} listcon={item} listindex={index} ></ListCont>;
                 }
                 if (this.state.selectdata === item.properties.style) {
-                  // return ListCont(item,index);
-                  return <ListCont onScroll={this.handleScroll} ref={e => (this.scroll = e)} className='scroll-body' key={index} dispname={this.state.itemList1.displayname} headurl={this.state.itemList1.headimgurl} listcon={item} listindex={index} ></ListCont>;
+                  return <ListCont onScroll={this.handleScroll} key={index} dispname={this.state.itemList1.displayname} headurl={this.state.itemList1.headimgurl} listcon={item} listindex={index} ></ListCont>;
                 } else {
                   return null;
                 }
@@ -343,12 +262,10 @@ fetchData=()=>{
             dataSource={this.state.itemList}
             renderItem={item => {
               if (this.state.selectdata === "所有") {
-                // return ListCont2(item)
                 return <ListCont2 imgurl={this.state.itemList1.headimgurl} listcon={item}></ListCont2>;
               }
 
               if (this.state.selectdata === item.properties.style) {
-                // return ListCont2(item)
                 return <ListCont2 imgurl={this.state.itemList1.headimgurl} listcon={item}></ListCont2>;
               } else {
                 return null;

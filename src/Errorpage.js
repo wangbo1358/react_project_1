@@ -1,7 +1,5 @@
 import React from 'react';
 import './App_content.css';
-import img2 from "./deleta.png";
-import ReactDOM, { render } from 'react-dom';
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, DatePicker, Select,Spin, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
 import "antd/dist/antd.css";

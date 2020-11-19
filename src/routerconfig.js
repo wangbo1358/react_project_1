@@ -1,5 +1,3 @@
-
-
 import {Routelist} from './router'
 import Info from './detail'
 import Login from './List_replace'

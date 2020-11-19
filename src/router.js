@@ -1,16 +1,9 @@
 import React from 'react';
 import './App_content.css';
-import img2 from "./deleta.png";
-import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, DatePicker, Select, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
 import "antd/dist/antd.css";
-import zhCN from 'antd/lib/locale/zh_CN';
-import moment from 'moment';
 import 'moment/locale/zh-cn';
-import { AudioOutlined } from '@ant-design/icons';
-import { UserOutlined } from '@ant-design/icons';
-import { MessageOutlined, LikeOutlined, StarOutlined } from '@ant-design/icons';
 const { Meta } = Card;
 
 
