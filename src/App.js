@@ -3,7 +3,7 @@ import img2 from "./deleta.png";
 import './App.css';
 const axios = require('axios');
 
-
+//这个组件不属于练习项目组件
 function App(res) {
   return (
     <div className="App">

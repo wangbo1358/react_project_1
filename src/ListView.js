@@ -4,6 +4,7 @@ import img2 from "./deleta.png";
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Link, Route, Switch } from "react-router-dom";
 import { Button, DatePicker, Select, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
+import Routelist from './router';
 import "antd/dist/antd.css";
 import zhCN from 'antd/lib/locale/zh_CN';
 import moment from 'moment';
@@ -33,7 +34,6 @@ class Login extends React.Component {
       }
     }
     time = (date) => {
-      console.log("ss")
       let json_date = new Date(date).toLocaleString();
       return json_date;
       // return new Date(new Date(json_date) + 8 * 3600 * 1000).toISOString().replace(/T/g, ' ').replace(/\.[\d]{3}Z/, '')
@@ -62,6 +62,19 @@ class Login extends React.Component {
     render() {
       return (
         <div>
+          <header className="App-header">
+            
+            <div className="top_title clearfix">
+              <div className="title_left tit">
+                <a className="App-link" href="#">&nbsp;BIM</a>
+              </div>
+              <div className="title_middle tit">设计列表</div>
+              <div className="title_right tit"></div>
+            </div>
+            <div className="qh">
+              <Routelist history={this.props.history} datacont={this.state.selectdata} />
+            </div>
+          </header>
           <Tabs className="tabnav" defaultActiveKey="1" onChange={callback}>
             {
               this.state.titledata.map((item, index) => {

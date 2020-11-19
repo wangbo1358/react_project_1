@@ -27,7 +27,7 @@ function callback(key) {
 moment.locale('zh-cn');
 
 //详情页组件
-class Info extends React.Component {
+class Listcon_detail extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
@@ -172,4 +172,4 @@ class Info extends React.Component {
   }
 
 
-  export default Info;
+  export default Listcon_detail;

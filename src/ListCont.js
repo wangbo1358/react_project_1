@@ -51,7 +51,7 @@ class ListCont extends React.Component{
           <Card className="cardone">
               <div className="cartitle_top">
               <a target="_blank" onMouseOver={() => { this.onMouseOver(this.props.listcon) }} onMouseOut={() => { this.onMouseOut(this.props.listcon) }} href={'https://bim.zhuxingyun.com/tool/cad?id=' + this.props.listcon.id + '&tid=' + this.props.listcon.tid} className="cadtit">CAD</a>
-              <Link to={{ pathname: "/info/"+ this.props.dataid, state:{a:this.props.listcon,b:this.props.listindex}}}>
+              <Link to={{ pathname: "/listcon_detail/"+ this.props.dataid, state:{a:this.props.listcon,b:this.props.listindex}}}>
                   
                   <img className="cartitle_top_img block" src={this.props.listcon.a ? this.props.listcon.drawingpreviewurl : this.props.listcon.previewurl} />
   

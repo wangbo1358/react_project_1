@@ -21,48 +21,12 @@ class App_content extends React.Component {
     }
 
   }
-  datacont = (listc, index) => {
-    this.setState({
-      selectdata: listc[index]
-    })
-  }
-  componentWillMount = () => {
-    let _this = this
-    window.uyun.api.authenticateMobileUser('17596576465', 'wangbo1358', function (err, result1) {
-      window.uyun.api.getDesigns({}, (err, result) => {
-        console.log(result.data)
-        console.log(result1);
-        _this.setState({
-          itemList: result && result.data,
-          itemList1: result1
-        })
-      })
-    });
-  }
 
   
   render() {
     return (
       <Router>
         <div className="App" >
-          <header className="App-header">
-            <div className="top_t">
-              <div className="top_tl">{this.state.itemList1.displayname}的个人空间</div>
-              <div className="top_tr">
-                <Avatar className="avarar1" src={this.state.itemList1.headimgurl} />{this.state.itemList1.displayname}
-              </div>
-            </div>
-            <div className="top_title clearfix">
-              <div className="title_left tit">
-                <a className="App-link" href="#">&nbsp;BIM</a>
-              </div>
-              <div className="title_middle tit">设计列表</div>
-              <div className="title_right tit"></div>
-            </div>
-            <div className="qh">
-              <Routelist datacont={this.state.selectdata} />
-            </div>
-          </header>
           <div className="content">
             <Switch>
               {/* <Route path="/" exact auth={true} component={Content1}></Route>

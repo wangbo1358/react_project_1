@@ -1,11 +1,12 @@
 import React from 'react';
 import './App_content.css';
-import { Button, DatePicker, Select,Spin, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
+import { Button, DatePicker,Modal, Select,Spin, version, message, Pagination, Avatar, Input, Image, Card, Tabs, List, Space, Radio, Row, Col, Divider } from "antd";
 import "antd/dist/antd.css";
 import 'moment/locale/zh-cn';
 import { AudioOutlined } from '@ant-design/icons';
 import ListCont from "./ListCont"
 import ListCont2 from "./ListCont2"
+import Routelist from './router';
 const { Meta } = Card;
 const { Search } = Input;
 const { Option } = Select;
@@ -36,7 +37,10 @@ class Content1 extends React.Component {
       cartitle_top_img2: "cartitle_top_img hidden",
       itemListkeyword: "",
       scrollHeight: 0,
-      hasMore: true  // 判断接口是否还有数据，通过接口设置
+      hasMore: true,  // 判断接口是否还有数据，通过接口设置
+      visible: false,
+      // displayname:this.props.location.state.displayname,
+      // headimg:this.props.location.state.headimg
     }
 
   }
@@ -135,23 +139,22 @@ fetchData=()=>{
     this.setState({
       value: e.target.value,
     },()=>{
-      if(this.state.value === 3){
-        window.uyun.util.setToken("");
-        this.props.history.push("/homelogin")
+      if (this.state.value === 1) {
+        this.setState({
+          tit1: "contentb block",
+          tit2: "contentb hidden"
+        })
+      }else if(this.state.value === 2){
+        this.setState({
+          tit1: "contentb hidden",
+          tit2: "contentb block"
+        })
       }
     });
-    if (this.state.value === 2) {
-      this.setState({
-        tit1: "contentb block",
-        tit2: "contentb hidden"
-      })
-    } else {
-      this.setState({
-        tit1: "contentb hidden",
-        tit2: "contentb block"
-      })
-    }
+    
   };
+  
+
 
   suffix = (
     <AudioOutlined
@@ -199,13 +202,32 @@ fetchData=()=>{
   
 
   render() {
+    console.log(this.props)
     return (
+      
       <div className="content1">
+        <header className="App-header">
+            <div className="top_t">
+              <div className="top_tl">{this.state.itemList1.displayname}的个人空间</div>
+              <div className="top_tr">
+                <Avatar className="avarar1" src={this.state.itemList1.headimgurl} />{this.state.itemList1.displayname}
+              </div>
+            </div>
+            <div className="top_title clearfix">
+              <div className="title_left tit">
+                <a className="App-link" href="#">&nbsp;BIM</a>
+              </div>
+              <div className="title_middle tit">设计列表</div>
+              <div className="title_right tit"></div>
+            </div>
+            <div className="qh">
+              <Routelist history={this.props.history} datacont={this.state.selectdata} />
+            </div>
+          </header>
         <div className="radio_chang">
           <Radio.Group onChange={this.onChange} value={this.state.value}>
             <Radio value={1}>卡片视图</Radio>
             <Radio value={2}>列表视图</Radio>
-            <Radio value={3}>退出登陆</Radio>
           </Radio.Group>
         </div>
         <div className="search_top">
@@ -264,7 +286,6 @@ fetchData=()=>{
               if (this.state.selectdata === "所有") {
                 return <ListCont2 imgurl={this.state.itemList1.headimgurl} listcon={item}></ListCont2>;
               }
-
               if (this.state.selectdata === item.properties.style) {
                 return <ListCont2 imgurl={this.state.itemList1.headimgurl} listcon={item}></ListCont2>;
               } else {

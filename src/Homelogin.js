@@ -38,10 +38,10 @@ class Homelogin extends React.Component{
         window.uyun.env = 'prod';
         window.uyun.api.authenticateMobileUser(_this.state.username, _this.state.password, function (err, result1) {
          
-          if(result1.token!=undefined){
-              alert("登陆成功！");
+          if(result1.token!=undefined&&result1.token!=null){
+              alert("登录成功！");
               window.uyun.util.setToken(result1.token);
-              _this.props.history.push("./");
+              _this.props.history.push({pathname:"/",state:{displayname:result1.displayname,headimg:result1.headimgurl}});
           }else{
             alert("账号密码不正确！请重新输入！");
             return false;
@@ -56,7 +56,7 @@ class Homelogin extends React.Component{
                 className="login_content_card"
                     hoverable
                 >
-                    <span className="login_title">登陆</span>
+                    <span className="login_title">登录</span>
                     <div className="login_top">
                         <span>请输入账号：</span>
                         <Input className="username" onChange={this.inputChange}  placeholder="请输入用户名" prefix={<UserOutlined />} />
@@ -65,7 +65,7 @@ class Homelogin extends React.Component{
                         <span>请输入密码：</span>
                         <Input.Password className="password" onChange={this.inputChange2}  placeholder="请输入您的密码" />
                     </div>
-                    <Button onClick={()=>{this.Logincon()}} className="login_btn" type="primary">登陆</Button>
+                    <Button onClick={()=>{this.Logincon()}} className="login_btn" type="primary">登录</Button>
                     
                 </Card>
             </div>
